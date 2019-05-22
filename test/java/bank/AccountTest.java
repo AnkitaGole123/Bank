@@ -54,8 +54,7 @@ public class AccountTest {
         Transaction credit = new Transaction("3456787578",TODAY,100);
         expected.add(credit);
         ankita.credit(100,TODAY);
-        assertEquals(expected.get(0).number,ankita.getPassbook().get(0).number);
-        assertEquals(expected.get(0).transactionDate,ankita.getPassbook().get(0).transactionDate);
-        assertEquals(expected.get(0).transaction,ankita.getPassbook().get(0).transaction,1);
+        assertEquals(expected.get(0),ankita.getPassbook().get(0));
+
     }
 }
