@@ -11,12 +11,17 @@ public class Account {
     private Date openingDate;
     public final int RATE_OF_INTEREST_PER_ANNUM = 10;
     private List<Transaction> transactions = new ArrayList<>();
+    public static int count;
 
     public Account(String accountHolderName, String accountNumber, double balance, Date openingDate) {
         this.holderName = accountHolderName;
         this.number = accountNumber;
         this.balance = balance;
         this.openingDate = openingDate;
+        this.count++;
+    }
+    public static int getCount(){
+        return count;
     }
     public double getBalance(int year) {
         return balance + (RATE_OF_INTEREST_PER_ANNUM * year * balance)/100;
