@@ -81,9 +81,4 @@ public class AccountTest {
         ankita.credit(200,TODAY);
         assertEquals(expectedTransaction,ankita.getPassbook());
     }
-    @Test public void itShouldGiveMultipleNumberOfAccount(){
-        Account ankita = new Account("Ankita", "123", 500, TODAY);
-        Account rahul = new Account("Ankita", "123", 500, TODAY);
-        assertEquals(2,Account.getCount());
-    }
 }
