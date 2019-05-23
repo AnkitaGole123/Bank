@@ -24,4 +24,13 @@ public class Transaction {
         this.transactionDate = transactionDate;
         this.transaction = transaction;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "number='" + number + '\'' +
+                ", transactionDate=" + transactionDate +
+                ", transaction=" + transaction +
+                '}';
+    }
 }

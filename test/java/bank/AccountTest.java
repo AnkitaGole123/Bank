@@ -59,7 +59,7 @@ public class AccountTest {
     @Test public void ifDebitTransactionIsDoneGetBackDebitTransactionInPassbook(){
         Account ankita = new Account("Ankita", "123", 200, TODAY);
         List<Transaction> expectedTransaction = new ArrayList<>();
-        Transaction debit = new Transaction("123",TODAY,100);
+        Transaction debit = new Transaction("123",TODAY,-100);
         expectedTransaction.add(debit);
         ankita.debit(100,TODAY);
         assertEquals(expectedTransaction,ankita.getPassbook());
@@ -73,7 +73,7 @@ public class AccountTest {
     @Test public void ifPassbookShouldHaveMultipleTransaction(){
         Account ankita = new Account("Ankita", "123", 500, TODAY);
         List<Transaction> expectedTransaction = new ArrayList<>();
-        Transaction debit = new Transaction("123",TODAY,100);
+        Transaction debit = new Transaction("123",TODAY,-100);
         Transaction credit = new Transaction("123",TODAY,200);
         expectedTransaction.add(debit);
         expectedTransaction.add(credit);
