@@ -50,18 +50,24 @@ public class AccountTest {
     }
     @Test public void ifOneTransactionIsDoneGetBackOneTransaction(){
         Account ankita = new Account("Ankita", "345", 0, TODAY);
-        List<Transaction> expected = new ArrayList<>();
+        List<Transaction> expectedTransaction = new ArrayList<>();
         Transaction credit = new Transaction("345",TODAY,100);
-        expected.add(credit);
+        expectedTransaction.add(credit);
         ankita.credit(100,TODAY);
-        assertEquals(expected,ankita.getPassbook());
+        assertEquals(expectedTransaction,ankita.getPassbook());
     }
     @Test public void ifDebitTransactionIsDoneGetBackDebitTransactionInPassbook(){
-        Account ankita = new Account("Ankita", "123", 0, TODAY);
-        List<Transaction> expected = new ArrayList<>();
+        Account ankita = new Account("Ankita", "123", 200, TODAY);
+        List<Transaction> expectedTransaction = new ArrayList<>();
         Transaction debit = new Transaction("123",TODAY,100);
-        expected.add(debit);
+        expectedTransaction.add(debit);
         ankita.debit(100,TODAY);
-        assertEquals(expected,ankita.getPassbook());
+        assertEquals(expectedTransaction,ankita.getPassbook());
+    }
+    @Test public void ifDebitIsMoreThenBalance(){
+        Account ankita = new Account("Ankita", "123", 0, TODAY);
+        List<Transaction> noTransactions = new ArrayList<>();
+        ankita.debit(100,TODAY);
+        assertEquals(noTransactions,ankita.getPassbook());
     }
 }
