@@ -20,7 +20,7 @@ public class AccountTest {
     @Test public void itShouldNotChangeCurrentBalanceAfterGivingCreditAndDebitSameAmount(){
         Account ankita = new Account("Ankita", "3456787578", 100, TODAY);
         ankita.credit(10, new Date(2019, 5, 23));
-        ankita.debit(10);
+        ankita.debit(10,TODAY);
         assertEquals( 100.0,ankita.getBalance(),1);
     }
     @Test public void itShouldVerifyingThatOneAccountShouldNotEffectAnotherAccount(){
@@ -33,7 +33,7 @@ public class AccountTest {
     }
     @Test public void itsShouldNotChangeBalanceIfDebitIsMoreThenBalance(){
         Account ankita = new Account("Ankita", "3456787578", 100, TODAY);
-        ankita.debit(200);
+        ankita.debit(200,TODAY);
         assertEquals(100 ,ankita.getBalance(),1);
     }
     @Test public void itShouldGiveNetAmountAfterTakingInterest(){
@@ -54,7 +54,14 @@ public class AccountTest {
         Transaction credit = new Transaction("3456787578",TODAY,100);
         expected.add(credit);
         ankita.credit(100,TODAY);
-        assertEquals(expected.get(0),ankita.getPassbook().get(0));
-
+        assertEquals(expected,ankita.getPassbook());
+    }
+    @Test public void ifDebitTransactionIsDoneGetBackDebitTransactionInPassbook(){
+        Account ankita = new Account("Ankita", "3456787578", 0, TODAY);
+        List<Transaction> expected = new ArrayList<>();
+        Transaction debit = new Transaction("3456787578",TODAY,100);
+        expected.add(debit);
+        ankita.debit(100,TODAY);
+        assertEquals(expected,ankita.getPassbook());
     }
 }

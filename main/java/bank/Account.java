@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Account {
     public String holderName;
-    public  String Number;
+    public  String number;
     private double balance;
     private Date openingDate;
     public final int RATE_OF_INTEREST_PER_ANNUM = 10;
@@ -15,7 +15,7 @@ public class Account {
 
     public Account(String accountHolderName, String accountNumber, double balance, Date openingDate) {
         this.holderName = accountHolderName;
-        this.Number = accountNumber;
+        this.number = accountNumber;
         this.balance = balance;
         this.openingDate = openingDate;
 
@@ -28,14 +28,16 @@ public class Account {
 
     public void credit(double amount, Date transactionDate) {
         this.balance += amount;
-        Transaction credit = new Transaction("3456787578",transactionDate,100);
+        Transaction credit = new Transaction(number,transactionDate,amount);
         transactions.add(credit);
     }
 
-    public void debit(double amount) {
+    public void debit(double amount, Date debitDate) {
         if(amount < balance){
             this.balance-=amount;
         }
+        Transaction debit = new Transaction(number,debitDate,amount);
+        transactions.add(debit);
     }
 
     public double getBalance() {
@@ -44,10 +46,9 @@ public class Account {
     public List<Transaction> getPassbook(){
         return transactions;
     }
-
     @Override
     public String toString() {
-        return holderName + ", " + Number + ", " +balance;
+        return holderName + ", " + number + ", " +balance;
     }
 }
 
