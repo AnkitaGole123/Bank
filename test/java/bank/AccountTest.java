@@ -64,10 +64,21 @@ public class AccountTest {
         ankita.debit(100,TODAY);
         assertEquals(expectedTransaction,ankita.getPassbook());
     }
-    @Test public void ifDebitIsMoreThenBalance(){
+    @Test public void ifDebitIsMoreThenBalanceNoTransaction(){
         Account ankita = new Account("Ankita", "123", 0, TODAY);
         List<Transaction> noTransactions = new ArrayList<>();
         ankita.debit(100,TODAY);
         assertEquals(noTransactions,ankita.getPassbook());
+    }
+    @Test public void ifPassbookShouldHaveMultipleTransaction(){
+        Account ankita = new Account("Ankita", "123", 500, TODAY);
+        List<Transaction> expectedTransaction = new ArrayList<>();
+        Transaction debit = new Transaction("123",TODAY,100);
+        Transaction credit = new Transaction("123",TODAY,200);
+        expectedTransaction.add(debit);
+        expectedTransaction.add(credit);
+        ankita.debit(100,TODAY);
+        ankita.credit(200,TODAY);
+        assertEquals(expectedTransaction,ankita.getPassbook());
     }
 }
