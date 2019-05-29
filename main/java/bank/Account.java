@@ -12,7 +12,7 @@ public class Account {
     public final int RATE_OF_INTEREST_PER_ANNUM = 10;
     private List<Transaction> transactions = new ArrayList<>();
 
-    public Account(String accountHolderName, String accountNumber, double balance, Date openingDate) {
+    public Account(String accountHolderName, String accountNumber, double balance) {
         this.holderName = accountHolderName;
         this.number = accountNumber;
         this.balance = balance;
