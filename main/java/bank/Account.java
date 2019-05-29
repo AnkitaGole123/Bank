@@ -21,16 +21,18 @@ public class Account {
     public double getBalance(int year) {
         return balance + (RATE_OF_INTEREST_PER_ANNUM * year * balance)/100;
     }
-    public void credit(double amount, Date transactionDate) {
+    public Account credit(double amount, Date transactionDate) {
         this.balance += amount;
         Transaction credit = new Transaction(number,transactionDate,amount);
         transactions.add(credit);
+        return this;
     }
     public void debit(double amount, Date debitDate) {
         if(amount <= balance) {
             this.balance -= amount;
             Transaction debit = new Transaction(number, debitDate, -amount);
             transactions.add(debit);
+
         }
     }
 

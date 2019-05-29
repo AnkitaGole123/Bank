@@ -81,4 +81,14 @@ public class AccountTest {
         ankita.credit(200,TODAY);
         assertEquals(expectedTransaction,ankita.getPassbook());
     }
+    @Test public void debitAndCreditBoth(){
+        Account ankita = new Account("Ankita", "123", 0);
+        ankita.credit(100,TODAY).debit(50,TODAY);
+        assertEquals(50,ankita.getBalance(),1);
+    }
+    @Test public void shouldBeAddMultipleCredit(){
+        Account ankita = new Account("Ankita", "123", 0);
+        ankita.credit(100,TODAY).credit(50,TODAY);
+        assertEquals(150,ankita.getBalance(),1);
+    }
 }
